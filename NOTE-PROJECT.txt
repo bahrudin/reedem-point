@@ -1,0 +1,5 @@
+INSTALL DEPEDENCY
+npm install jquery
+npm install sweetalert2
+npm install sass --save-dev
+npm install bootstrap @popperjs/core

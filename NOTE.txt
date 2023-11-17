@@ -1,0 +1,83 @@
+-----------------INSTALL ALERT----------------------------------
+1.  Terminal
+    npm install jquery
+    npm install sweetalert2
+
+2.  /resources/js/app.js
+    import jQuery from 'jquery';
+    window.$ = jQuery;
+
+    import swal from 'sweetalert2';
+    window.Swal = swal;
+
+3.  vite.config.js (add $)
+    import { defineConfig } from 'vite';
+    import laravel from 'laravel-vite-plugin';
+
+    export default defineConfig({
+        plugins: [
+            laravel({
+                input: [
+                    'resources/sass/app.scss',
+                    'resources/js/app.js',
+                ],
+                refresh: true,
+            }),
+        ],
+        resolve: {
+            alias: {
+                '$': 'jQuery'
+            },
+        },
+    });
+
+4.  Terminal
+    npm run dev
+
+5.  REF
+    https://shouts.dev/articles/laravel-10-vite-how-to-install-sweetalert2
+
+-----------------INSTALL BOOSTRAP--------------------------------
+1.  Terminal
+    npm install bootstrap @popperjs/core
+
+2.  Bootstrap mengandalkan Popper untuk dropdown, popover, dan tooltipnya.
+    Dependensi lain yang dibutuhkan Bootstrap adalah Sass, yang akan kita instal sebagai dependensi pengembangan.
+
+    npm install sass --save-dev
+
+3. Add Folder scss dan file di ./resources
+    ./resources/scss/app.scss
+
+4.  IMPORT
+    // resources/scss/app.scss
+    @import "~bootstrap/scss/bootstrap";
+
+    / resources/js/app.js
+    import * as bootstrap from 'bootstrap';
+
+5.  ADD
+    // vite.config.js
+    import path from 'path';
+    export default defineConfig({
+        plugins: [ /../ ],
+        resolve: {
+            alias: {
+                '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap')
+            }
+        }
+    });
+
+6.  TERMINAL
+    npm run build
+
+6.  view
+    <!-- resources/views/welcome.blade.php -->
+    <head>
+        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    </head>
+
+7.  REF
+    URL : https://devdojo.com/thinkverse/how-to-use-bootstrap-with-laravel-and-vite
+
+
